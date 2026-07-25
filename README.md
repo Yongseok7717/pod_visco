@@ -1,4 +1,4 @@
-# pod_visco
+# Reduced-order modeling of discontinuous Galerkin method for linear viscoelastic problems
 
 ## Summary
 
