@@ -1,15 +1,28 @@
 # pod_visco
 
-Proper Orthogonal Decomposition (POD) reduced-order models (ROM) for the
-viscoelastic wave equation, discretized in space with a symmetric interior
-penalty discontinuous Galerkin (SIPDG) method and in time with a
-theta-scheme (Euler / Crank–Nicolson). The internal (memory) variables of
-the standard linear solid model are updated algebraically at each time
-step, following the Zener/Prony-series relaxation model
-`varphi(t) = varphi0 + sum_q varphi_q * exp(-t/tau_q)`.
+## Summary
 
-The repository contains two numerical experiments built with
-[FEniCSx](https://fenicsproject.org/) (`dolfinx`).
+This repository implements and evaluates **POD-based reduced-order models
+(ROMs)** for a symmetric-interior-penalty discontinuous Galerkin (SIPDG)
+discretization of the **viscoelastic wave equation**, with internal
+(memory) variables handled via the Zener/Prony-series relaxation model.
+It contains two self-contained numerical experiments:
+
+- **Problem 1** — a manufactured-solution study that measures spatial and
+  temporal convergence rates of the DG-POD ROM (built from inexact
+  coarse-FOM snapshots) against the full-order model.
+- **Problem 2** — a long-time performance study of the DG-POD ROM on a
+  loaded, PDMS-like viscoelastic block, comparing ROM accuracy and speed
+  against a fine reference FOM for a range of POD dimensions.
+
+Both experiments are implemented with [FEniCSx](https://fenicsproject.org/)
+(`dolfinx`) and include the scripts, raw numerical results, and plots used
+to produce them; see the sections below for details.
+
+The time discretization uses a theta-scheme (Euler / Crank–Nicolson), and
+the internal (memory) variables of the standard linear solid model are
+updated algebraically at each time step, following the Zener/Prony-series
+relaxation model `varphi(t) = varphi0 + sum_q varphi_q * exp(-t/tau_q)`.
 
 ## Problem 1 — Manufactured-solution convergence study
 
